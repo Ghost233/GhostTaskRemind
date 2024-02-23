@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1001908208292",
+    "project_id": "ghosttaskremind",
+    "storage_bucket": "ghosttaskremind.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001908208292:android:94a7a45dbc99818ba29c31",
+        "android_client_info": {
+          "package_name": "me.ghost233.ghosttaskremind"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrki2MTE2AnMadwSh5DVetDThuRBKMugg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

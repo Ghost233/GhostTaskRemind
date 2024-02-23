@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_package = "me.ghost233.logtool";
+
+enum LogLevel {
+    V = 0;
+    D = 1;
+    I = 2;
+    W = 3;
+    E = 4;
+    A = 5;
+}
+
+enum LogType {
+    Unknown = 0;
+    Debug = 1;
+    Init = 2;
+    Network = 3;
+    CRASH = 99;
+}
+
+message LogBean{
+    string time = 1;
+    LogLevel logLevel = 2;
+    LogType logType = 3;
+    string tag = 4;
+    string message = 5;
+    repeated string head = 6;
+}
