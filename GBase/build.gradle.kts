@@ -44,5 +44,5 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
 
     api("com.blankj:utilcodex:1.31.1")
-    annotationProcessor("android.arch.persistence.room:compiler:1.1.1")
+    api("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
 }

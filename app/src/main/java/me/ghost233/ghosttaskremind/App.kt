@@ -2,6 +2,7 @@ package me.ghost233.ghosttaskremind
 
 import android.app.Application
 import com.blankj.utilcode.util.Utils
+import me.ghost233.gstorage.KVUtils
 import me.ghost233.logtool.LogProtocol
 import me.ghost233.logtool.LogTool
 import me.ghost233.logtool.logtoolconfig.LogToolConfigOSLog
@@ -13,6 +14,7 @@ class App : Application() {
         super.onCreate()
 
         initBaseConfig()
+        KVUtils.initWithContext(this)
         Utils.init(this)
         initLogTool()
         LogTool.writeDebug(TAG, "init")

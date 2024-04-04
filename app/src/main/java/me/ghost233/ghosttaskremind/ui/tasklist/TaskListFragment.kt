@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import me.ghost233.ghosttaskremind.databinding.FragmentHomeBinding
+import androidx.recyclerview.widget.GridLayoutManager
+import me.ghost233.ghosttaskremind.databinding.FragmentTaskListBinding
 
 class TaskListFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentTaskListBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,16 +22,16 @@ class TaskListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        val taskListViewModel =
-            ViewModelProvider(this).get(TaskListViewModel::class.java)
+        val taskListViewModel = ViewModelProvider(this).get(TaskListViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentTaskListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        taskListViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val adapter = TaskListFragmentAdapter()
+//        adapter.submitList(taskListViewModel.taskHistoryList)
+        binding.recycleView.layoutManager = GridLayoutManager(context, 4)
+        binding.recycleView.adapter = adapter
+
         return root
     }
 

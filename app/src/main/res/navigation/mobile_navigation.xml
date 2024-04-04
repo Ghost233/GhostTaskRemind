@@ -9,17 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="me.ghost233.ghosttaskremind.ui.tasklist.TaskListFragment"
         android:label="@string/text_task_list"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_task_list" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="me.ghost233.ghosttaskremind.ui.newtask.NewTaskFragment"
         android:label="@string/text_new_task"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_new_task" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="me.ghost233.ghosttaskremind.ui.setting.SettingFragment"
         android:label="@string/text_setting"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_setting" />
 </navigation>

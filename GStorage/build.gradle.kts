@@ -47,6 +47,6 @@ dependencies {
     implementation(project(":LogTool"))
 
     //微信开源项目，替代SP
-    implementation("com.tencent:mmkv:1.3.3")
+    api("com.tencent:mmkv:1.3.3")
     api("com.tencent.wcdb:room:1.1-19")
 }

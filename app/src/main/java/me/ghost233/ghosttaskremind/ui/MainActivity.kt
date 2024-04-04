@@ -9,6 +9,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import me.ghost233.ghosttaskremind.R
 import me.ghost233.ghosttaskremind.databinding.ActivityMainBinding
+import me.ghost233.ghosttaskremind.model.setting.SettingManager
+import me.ghost233.ghosttaskremind.model.tasktype.TaskTypeManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +21,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        TaskTypeManager.shared
+        SettingManager.shared
+        TaskTypeManager.shared
 
         val navView: BottomNavigationView = binding.navView
 

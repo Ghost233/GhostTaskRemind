@@ -4,6 +4,7 @@ plugins {
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp") version "1.9.21-1.0.15"
 }
 
 android {
@@ -64,6 +65,11 @@ android {
     }
 }
 
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.incremental", "true")
+}
+
 dependencies {
     implementation(project(":GBase"))
 
@@ -81,4 +87,10 @@ dependencies {
 
     implementation("com.github.getActivity:XXPermissions:18.6")
     implementation("com.github.getActivity:EasyWindow:10.6")
+
+    implementation("androidx.room:room-ktx:$2.6.1")
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.databinding:databinding-runtime:8.3.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 }
