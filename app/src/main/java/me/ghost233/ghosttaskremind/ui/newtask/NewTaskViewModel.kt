@@ -1,20 +1,16 @@
 package me.ghost233.ghosttaskremind.ui.newtask
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import me.ghost233.ghosttaskremind.model.taskhistory.TaskHistoryManager
 import me.ghost233.ghosttaskremind.model.taskhistory.TaskHistoryModel
 import me.ghost233.gstorage.KVUtils
 
 class NewTaskViewModel : ViewModel() {
 
-    val isRunning = MutableLiveData<Boolean>().apply {
-        value = KVUtils.getBoolean("task_running", false)
-    }
+    val isRunning = MutableStateFlow(KVUtils.getBoolean("task_running", false))
 
-    val nowRunningTaskId = MutableLiveData<Int>().apply {
-        value = KVUtils.getInt("task_running_id", -1)
-    }
+    val nowRunningTaskId = MutableStateFlow(KVUtils.getInt("task_running_id", -1))
 
     fun startNewTask(taskTypeId: Long) {
         val taskHistoryModel = TaskHistoryModel()

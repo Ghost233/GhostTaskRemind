@@ -40,13 +40,13 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
 
     implementation(project(":LogTool"))
 
     //微信开源项目，替代SP
-    api("com.tencent:mmkv:1.3.3")
+    api("com.tencent:mmkv:1.3.5")
     api("com.tencent.wcdb:room:1.1-19")
 }

@@ -1,6 +1,5 @@
 package me.ghost233.ghosttaskremind.ui.setting
 
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 
 enum class SettingStatus(val value: Int) {
@@ -25,7 +24,7 @@ enum class SettingStatus(val value: Int) {
 data class SettingModel(
     val name: String,
     var status: SettingStatus,
-) : LiveData<SettingModel>()
+)
 
 class SettingModelDiffCallback : DiffUtil.ItemCallback<SettingModel>() {
     override fun areItemsTheSame(oldItem: SettingModel, newItem: SettingModel): Boolean {

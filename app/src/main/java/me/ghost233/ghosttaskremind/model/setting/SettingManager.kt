@@ -1,6 +1,6 @@
 package me.ghost233.ghosttaskremind.model.setting
 
-import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.flow.MutableStateFlow
 import me.ghost233.ghosttaskremind.ui.setting.SettingModel
 import me.ghost233.ghosttaskremind.ui.setting.SettingStatus
 import me.ghost233.gstorage.KVUtils
@@ -54,8 +54,7 @@ class SettingManager {
         notificationModel,
         widgetModel,
     )
-    val settingListLiveData: MutableLiveData<MutableList<SettingModel>> =
-        MutableLiveData(settingList)
+    val settingListFlow = MutableStateFlow(settingList)
 
     init {
         val bootStartStatus = KVUtils.getInt(BOOT_START_KEY, SettingStatus.UNKNOWN.ordinal)

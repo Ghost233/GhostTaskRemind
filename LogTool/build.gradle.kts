@@ -91,9 +91,9 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
 
-    api("com.google.protobuf:protobuf-javalite:3.17.3")
+    api("com.google.protobuf:protobuf-javalite:4.26.1")
 }

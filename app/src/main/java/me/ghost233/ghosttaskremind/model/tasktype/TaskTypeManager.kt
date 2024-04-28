@@ -1,12 +1,12 @@
 package me.ghost233.ghosttaskremind.model.tasktype
 
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.blankj.utilcode.util.Utils
 import com.tencent.wcdb.room.db.WCDBOpenHelperFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.ghost233.logtool.LogTool
@@ -53,7 +53,7 @@ class TaskTypeManager {
     //    private val _taskTypeList =
 //        MutableLiveData<MutableList<TaskTypeModel>>().apply { value = mutableListOf() }
     private val _taskTypeList = mutableListOf<TaskTypeModel>()
-    val taskTypeList = MutableLiveData<List<TaskTypeModel>>().apply { value = _taskTypeList }
+    val taskTypeList = MutableStateFlow(_taskTypeList)
 
     init {
         taskTypeDAO

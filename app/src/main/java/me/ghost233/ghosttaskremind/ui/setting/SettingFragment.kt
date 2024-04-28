@@ -1,6 +1,7 @@
 package me.ghost233.ghosttaskremind.ui.setting
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +10,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 import me.ghost233.ghosttaskremind.databinding.FragmentSettingBinding
 import me.ghost233.ghosttaskremind.model.setting.SettingManager
 
 class SettingFragment : Fragment() {
+    companion object {
+        private const val TAG = "SettingFragment"
+    }
 
     private var binding: FragmentSettingBinding? = null
 
@@ -28,11 +37,14 @@ class SettingFragment : Fragment() {
         binding = tempBinding
 
         val adapter = SettingFragmentAdapter()
-        SettingManager.shared.settingListLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-            adapter.notifyDataSetChanged()
-        }
 
+        CoroutineScope(Dispatchers.IO).launch {
+            SettingManager.shared.settingListFlow.collect {
+                adapter.submitList(it)
+                adapter.notifyDataSetChanged()
+            }
+        }
+        
         adapter.setOnItemClickListener { _, _, position ->
             when (position) {
                 0 -> {

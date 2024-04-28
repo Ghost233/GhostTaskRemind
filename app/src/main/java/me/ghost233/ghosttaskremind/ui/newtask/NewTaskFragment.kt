@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.ghost233.ghosttaskremind.databinding.FragmentNewTaskBinding
 import me.ghost233.ghosttaskremind.model.tasktype.TaskTypeManager
 import me.ghost233.logtool.LogTool
@@ -27,15 +30,17 @@ class NewTaskFragment : Fragment() {
         binding = tempBinding
         val root: View = tempBinding.root
 
-        newTaskViewModel.isRunning.observe(viewLifecycleOwner) {
-            LogTool.writeDebug(TAG, "isRunning: $it")
-            binding?.let { binding ->
-                if (it) {
-                    binding.layoutAddNewTask.visibility = View.GONE
-                    binding.layoutRunningTask.visibility = View.VISIBLE
-                } else {
-                    binding.layoutAddNewTask.visibility = View.VISIBLE
-                    binding.layoutRunningTask.visibility = View.GONE
+        CoroutineScope(Dispatchers.IO).launch {
+            newTaskViewModel.isRunning.collect {
+                LogTool.writeDebug(TAG, "isRunning: $it")
+                binding?.let { binding ->
+                    if (it) {
+                        binding.layoutAddNewTask.visibility = View.GONE
+                        binding.layoutRunningTask.visibility = View.VISIBLE
+                    } else {
+                        binding.layoutAddNewTask.visibility = View.VISIBLE
+                        binding.layoutRunningTask.visibility = View.GONE
+                    }
                 }
             }
         }
@@ -50,10 +55,12 @@ class NewTaskFragment : Fragment() {
             }
         }
 
-        TaskTypeManager.shared.taskTypeList.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-            for (i in it) {
-                LogTool.writeDebug(TAG, "$i")
+        CoroutineScope(Dispatchers.IO).launch {
+            TaskTypeManager.shared.taskTypeList.collect {
+                adapter.submitList(it)
+                for (i in it) {
+                    LogTool.writeDebug(TAG, "$i")
+                }
             }
         }
 
